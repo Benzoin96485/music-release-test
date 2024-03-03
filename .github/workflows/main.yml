@@ -11,12 +11,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Convert format
         run: |
-          docker run -it -v .:/workspace benzoin96485/musescore:v1 mscore test.mxl -o test.mp3
-          docker run -it -v .:/workspace benzoin96485/musescore:v1 mscore test.mxl -o test.pdf
-          docker run -it -v .:/workspace benzoin96485/musescore:v1 mscore test.mxl -o test.mid
+          cd
+          docker run -v .:/workspace benzoin96485/musescore:v1 mscore test.mxl -o test.mp3
+          docker run -v .:/workspace benzoin96485/musescore:v1 mscore test.mxl -o test.pdf
+          docker run -v .:/workspace benzoin96485/musescore:v1 mscore test.mxl -o test.mid
       - name: Create Release
         uses: ncipollo/release-action@v1.14.0
         with:
