@@ -1,0 +1,31 @@
+name: Music Release
+on:
+  push:
+    # Sequence of patterns matched against refs/tags
+    tags:
+      - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
+
+jobs:
+  build:
+    name: Create Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+      - name: Convert format
+        run: |
+          docker run -it -v .:/workspace benzoin96485/musescore:v1 mscore test.mxl -o test.mp3
+          docker run -it -v .:/workspace benzoin96485/musescore:v1 mscore test.mxl -o test.pdf
+          docker run -it -v .:/workspace benzoin96485/musescore:v1 mscore test.mxl -o test.mid
+      - name: Create Release
+        uses: ncipollo/release-action@v1.14.0
+        with:
+          artifact: |
+            test.mp3
+            test.pdf
+            test.mxl
+            test.mid
+          body: |
+            test text
+    
+          
