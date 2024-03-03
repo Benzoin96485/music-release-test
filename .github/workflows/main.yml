@@ -21,11 +21,11 @@ jobs:
       - name: Create Release
         uses: ncipollo/release-action@v1.14.0
         with:
-          artifact: |
-            test.mp3
-            test.pdf
-            test.mxl
-            test.mid
+          artifacts: |
+            ./test.mp3
+            ./test.pdf
+            ./test.mxl
+            ./test.mid
           body: |
             test text
     
