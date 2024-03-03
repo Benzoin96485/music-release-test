@@ -14,7 +14,7 @@ jobs:
         uses: actions/checkout@v4
       - name: Convert format
         run: |
-          cd
+          echo `ls`
           docker run -v .:/workspace benzoin96485/musescore:v1 mscore test.mxl -o test.mp3
           docker run -v .:/workspace benzoin96485/musescore:v1 mscore test.mxl -o test.pdf
           docker run -v .:/workspace benzoin96485/musescore:v1 mscore test.mxl -o test.mid
