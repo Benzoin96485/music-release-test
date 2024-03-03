@@ -8,7 +8,6 @@ on:
 jobs:
   build:
     name: Create Release
-    permissions: write-all
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
@@ -19,7 +18,6 @@ jobs:
           docker run -v .:/workspace benzoin96485/musescore:v1 mscore test.mxl -o test.mp3
           docker run -v .:/workspace benzoin96485/musescore:v1 mscore test.mxl -o test.pdf
           docker run -v .:/workspace benzoin96485/musescore:v1 mscore test.mxl -o test.mid
-          echo `ls`
       - name: Create Release
         uses: ncipollo/release-action@v1.14.0
         with:
